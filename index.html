@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anuj Chauhan · Senior SDET</title>
+  <meta name="description" content="Anuj Chauhan, Senior SDET and Quality Engineer with 10+ years in testing. Playwright, Cypress, CI/CD and API test automation.">
+  <meta property="og:title" content="Anuj Chauhan · Senior SDET">
+  <meta property="og:description" content="I build test automation teams can trust. Playwright, Cypress, GitHub Actions, Docker.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0B0F17; --surface: #121826; --surface-2: #0F1522; --border: #1F2937;
+      --text: #E5E7EB; --muted: #9CA3AF; --dim: #6B7280;
+      --green: #22C55E; --cyan: #38BDF8; --violet: #A78BFA; --amber: #FBBF24; --red: #EF4444;
+      --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+      --max: 1200px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body { background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+    .mono { font-family: var(--mono); }
+
+    /* Nav */
+    header { position: sticky; top: 0; z-index: 10; background: rgba(11, 15, 23, 0.88); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .brand { display: flex; align-items: center; gap: 14px; font-weight: 700; font-size: 18px; }
+    .logo { width: 40px; height: 40px; border-radius: 10px; background: var(--green); color: var(--bg); display: grid; place-items: center; font-weight: 800; font-size: 16px; }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { color: var(--muted); font-weight: 500; font-size: 15px; transition: color .15s; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--green); }
+    .menu-btn { display: none; background: none; border: 1px solid var(--border); color: var(--text); border-radius: 8px; padding: 8px 12px; font: 600 14px var(--sans); cursor: pointer; }
+
+    /* Hero */
+    .hero { position: relative; padding: 88px 0 72px; background-image: radial-gradient(#1A2233 1.2px, transparent 1.2px); background-size: 48px 48px; }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 56px; align-items: center; }
+    .pill { display: inline-flex; align-items: center; gap: 10px; padding: 6px 16px; border: 1px solid var(--green); border-radius: 999px; background: rgba(34, 197, 94, .1); color: var(--green); font-weight: 600; font-size: 14px; }
+    .pill::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--green); }
+    .kicker { color: var(--cyan); font-weight: 600; font-size: 18px; margin-top: 32px; }
+    h1 { font-size: clamp(38px, 5.2vw, 60px); line-height: 1.15; font-weight: 800; letter-spacing: -0.02em; margin-top: 12px; }
+    h1 span { color: var(--green); }
+    .lead { color: var(--muted); font-size: 18px; max-width: 600px; margin-top: 22px; }
+    .ctas { display: flex; gap: 16px; margin-top: 32px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; height: 52px; padding: 0 28px; border-radius: 10px; font-weight: 700; font-size: 16px; transition: transform .15s, background .15s; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--green); color: var(--bg); }
+    .btn-ghost { border: 1.5px solid var(--border); color: var(--text); font-weight: 600; }
+    .btn-ghost:hover { border-color: var(--green); }
+
+    .terminal { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; font-family: var(--mono); font-size: 14px; }
+    .term-bar { display: flex; align-items: center; gap: 8px; padding: 14px 16px; background: var(--surface-2); border-bottom: 1px solid var(--border); }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .term-title { margin: 0 auto; color: var(--dim); font-size: 13px; padding-right: 44px; }
+    .term-body { padding: 24px 26px 28px; line-height: 2.1; white-space: pre; overflow-x: auto; }
+    .g { color: var(--green); } .c { color: var(--cyan); } .v { color: var(--violet); } .a { color: var(--amber); } .m { color: var(--muted); } .d { color: var(--dim); }
+    .cursor { animation: blink 1.1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* Sections */
+    section { padding: 72px 0; }
+    .eyebrow { font-family: var(--mono); color: var(--green); font-weight: 600; font-size: 14px; letter-spacing: 2px; }
+    h2 { font-size: clamp(28px, 3.4vw, 36px); font-weight: 700; letter-spacing: -0.01em; margin: 8px 0 36px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px; }
+    .muted { color: var(--muted); }
+
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .stat b { display: block; color: var(--green); font-size: 40px; font-weight: 800; line-height: 1.2; }
+    .stat span { color: var(--muted); font-weight: 500; font-size: 15px; }
+
+    .feature { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; padding: 48px; border-radius: 18px; }
+    .meta { font-family: var(--mono); color: var(--cyan); font-weight: 600; font-size: 14px; }
+    .feature p { margin-top: 18px; font-size: 17px; }
+    .journey { display: flex; align-items: center; gap: 16px; margin-top: 32px; flex-wrap: wrap; }
+    .step { padding: 18px 20px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface-2); min-width: 200px; }
+    .step strong { display: block; font-size: 15px; }
+    .step small { color: var(--muted); font-size: 14px; }
+    .step.now { border-color: var(--green); background: rgba(34, 197, 94, .08); }
+    .step.now strong { color: var(--green); }
+    .arrow { color: var(--green); font-size: 26px; font-weight: 700; }
+    .feature h3 { font-size: 20px; margin-bottom: 18px; }
+    .highlights { list-style: none; display: grid; gap: 20px; }
+    .highlights li { position: relative; padding-left: 26px; }
+    .highlights li::before { content: ""; position: absolute; left: 2px; top: 9px; width: 10px; height: 10px; border-radius: 50%; background: var(--green); }
+    .highlights strong { display: block; font-size: 16px; }
+    .highlights span { color: var(--muted); font-size: 15px; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+    .chip { padding: 3px 12px; border-radius: 999px; border: 1px solid currentColor; font-size: 13px; font-weight: 500; }
+    .chip.c { color: var(--cyan); background: rgba(56, 189, 248, .12); }
+    .chip.v { color: var(--violet); background: rgba(167, 139, 250, .12); }
+    .chip.g { color: var(--green); background: rgba(34, 197, 94, .12); }
+    .chip.a { color: var(--amber); background: rgba(251, 191, 36, .12); }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .project { display: flex; flex-direction: column; }
+    .project h3 { font-size: 22px; }
+    .project .meta { margin-top: 2px; }
+    .project p { margin-top: 14px; font-size: 15px; flex: 1; }
+    .project .chips { margin-top: 18px; }
+    .cta-card { border-color: var(--green); background: rgba(34, 197, 94, .08); }
+    .cta-card h3 { color: var(--green); }
+    .cta-card a { color: var(--green); font-weight: 700; margin-top: 18px; }
+
+    .skill .bar { width: 28px; height: 4px; border-radius: 2px; }
+    .skill h3 { font-size: 20px; margin-top: 18px; }
+    .skill .chips { margin-top: 16px; }
+
+    .timeline { list-style: none; position: relative; }
+    .timeline::before { content: ""; position: absolute; left: 250px; top: 12px; bottom: 30px; width: 2px; background: var(--border); }
+    .job { display: grid; grid-template-columns: 250px 1fr; padding-bottom: 32px; }
+    .job time { font-family: var(--mono); color: var(--dim); font-size: 14px; padding-top: 3px; }
+    .job .body { position: relative; padding-left: 36px; }
+    .job .body::before { content: ""; position: absolute; left: -6px; top: 9px; width: 12px; height: 12px; border-radius: 50%; background: var(--border); }
+    .job.current .body::before { left: -8px; width: 16px; height: 16px; top: 7px; background: var(--green); }
+    .job h3 { font-size: 18px; }
+    .job h3 span { color: var(--muted); font-weight: 500; font-size: 16px; margin-left: 6px; }
+    .job.current h3 { color: var(--green); }
+    .job.current h3 span { color: var(--cyan); }
+    .job p { color: var(--muted); font-size: 15px; margin-top: 4px; }
+
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .principle b { font-family: var(--mono); color: var(--green); font-size: 28px; font-weight: 700; }
+    .principle h3 { font-size: 19px; margin-top: 10px; }
+    .principle p { color: var(--muted); font-size: 15px; margin-top: 8px; }
+
+    .contact { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 48px 56px; border-radius: 18px; border-left: 6px solid var(--green); flex-wrap: wrap; }
+    .contact h2 { margin: 0 0 6px; }
+    .contact-links { display: flex; gap: 32px; flex-wrap: wrap; margin-top: 22px; font-family: var(--mono); font-weight: 600; font-size: 16px; }
+    .contact-links a:hover { text-decoration: underline; }
+    footer { text-align: center; color: var(--dim); font-size: 13px; padding: 40px 0 48px; }
+
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; border-radius: 6px; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero-grid, .feature { grid-template-columns: 1fr; }
+      .stats, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 720px) {
+      .menu-btn { display: block; }
+      .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 8px 24px 16px; }
+      .nav-links.open { display: flex; }
+      .nav-links a { display: block; padding: 12px 0; font-size: 16px; }
+      .hero { padding: 56px 0 48px; }
+      section { padding: 52px 0; }
+      .stats, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .feature, .contact { padding: 28px 24px; }
+      .terminal { font-size: 12px; }
+      .timeline::before { left: 5px; }
+      .job { grid-template-columns: 1fr; padding-left: 0; }
+      .job time { padding-left: 36px; }
+      .job .body { padding-left: 36px; }
+      .job .body::before { left: 0; }
+      .job.current .body::before { left: -2px; }
+      .job h3 span { display: block; margin-left: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .cursor { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="wrap nav" aria-label="Main">
+      <a href="#about" class="brand" aria-label="Anuj Chauhan, back to top"><span class="logo">AC</span>Anuj Chauhan</a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="nav-links" data-testid="menu-button">Menu</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero / About -->
+    <div class="hero" id="about">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="pill">Open to SDET opportunities</span>
+          <p class="kicker mono">Senior SDET · Quality Engineer</p>
+          <h1>I build test automation <span>teams can trust.</span></h1>
+          <p class="lead">10+ years in software testing, 5+ in automation. I design Playwright and Cypress frameworks from scratch, wire them into CI/CD, and keep them fast, stable and easy for developers to contribute to.</p>
+          <div class="ctas">
+            <a class="btn btn-primary" href="#work">View my work</a>
+            <a class="btn btn-ghost" href="#contact">Get in touch</a>
+          </div>
+        </div>
+        <div class="terminal" aria-hidden="true">
+          <div class="term-bar">
+            <span class="dot" style="background:var(--red)"></span>
+            <span class="dot" style="background:var(--amber)"></span>
+            <span class="dot" style="background:var(--green)"></span>
+            <span class="term-title">citadel365-e2e — zsh</span>
+          </div>
+<div class="term-body"><span class="g">$</span> npm run test:smoke
+<span class="m">  Running smoke suite using 4 workers</span>
+<span class="g">  ✓</span> <span class="c">@auth  @customer  @screening</span>
+<span class="g">  ✓</span> <span class="c">@adminPanel  @reports  @riskSetting</span>
+
+<span class="g">$</span> npm run test:full <span class="d"># nightly · Docker</span>
+<span class="m">  Phase 1  regression      </span><span class="g">parallel</span>
+<span class="m">  Phase 2  @CreditCount    </span><span class="a">sequential</span>
+<span class="m">  Phase 3  @import         </span><span class="a">sequential</span>
+
+<span class="m">  1,000+ tests · 56 specs · </span><span class="v">report → Slack</span>
+<span class="g">$</span> <span class="g cursor">▍</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="wrap">
+      <div class="stats">
+        <div class="card stat"><b>10+</b><span>years in software testing</span></div>
+        <div class="card stat"><b>5+</b><span>years building automation</span></div>
+        <div class="card stat"><b>1,000+</b><span>Playwright tests I own</span></div>
+        <div class="card stat"><b>2</b><span>frameworks I built and own</span></div>
+      </div>
+    </div>
+
+    <!-- Featured work -->
+    <section id="work">
+      <div class="wrap">
+        <p class="eyebrow">// FEATURED WORK</p>
+        <h2>Citadel 365 — test automation from zero</h2>
+        <article class="card feature">
+          <div>
+            <p class="meta">KYC / AML compliance platform · LogicLink Labs · 2024 – present</p>
+            <p class="muted">I own QA end to end for a multi-tenant compliance product used for customer onboarding, screening, risk scoring and case management. I built the Cypress framework from scratch, then migrated it to Playwright for native parallel runs, trace-based debugging and Docker-based execution.</p>
+            <div class="journey">
+              <div class="step"><strong>Cypress · 2024</strong><small>~700 tests · POM</small></div>
+              <span class="arrow" aria-hidden="true">→</span>
+              <div class="step now"><strong>Playwright · 2026</strong><small>1,000+ tests · Docker</small></div>
+            </div>
+            <div class="chips">
+              <span class="chip c">Playwright</span><span class="chip c">Cypress</span><span class="chip c">JavaScript</span>
+              <span class="chip c">GitHub Actions</span><span class="chip c">Docker</span><span class="chip c">MailSlurp</span>
+              <span class="chip c">Mochawesome</span><span class="chip c">Claude (AI)</span>
+            </div>
+          </div>
+          <div>
+            <h3>What I built</h3>
+            <ul class="highlights">
+              <li><strong>Layered framework</strong><span>Locators, page objects and specs; one config for dev, staging, UAT and every tenant.</span></li>
+              <li><strong>Fast feedback in CI</strong><span>PR smoke suite via tags, full regression nightly across parallel runners.</span></li>
+              <li><strong>Hard async flows, solved</strong><span>API polling for bulk imports and isolated sequential lanes for shared state.</span></li>
+              <li><strong>Reports people read</strong><span>Merged HTML report, run summary and a Slack message every morning.</span></li>
+              <li><strong>Easy to contribute</strong><span>The trainee I mentor now adds tests independently by following the patterns.</span></li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- More projects -->
+    <section id="projects" style="padding-top:0">
+      <div class="wrap">
+        <p class="eyebrow">// MORE PROJECTS</p>
+        <h2>Products I've helped ship</h2>
+        <div class="grid-3">
+          <article class="card project">
+            <h3>Limepay</h3><p class="meta">Payment platform</p>
+            <p class="muted">Cypress, Playwright, Karate API and Jest testing for a payments product.</p>
+            <div class="chips"><span class="chip v">Cypress</span><span class="chip v">Playwright</span><span class="chip v">Karate</span><span class="chip v">Jest</span></div>
+          </article>
+          <article class="card project">
+            <h3>RealBlocks</h3><p class="meta">Investment SaaS</p>
+            <p class="muted">E2E automation with Cypress plus manual testing of investor workflows.</p>
+            <div class="chips"><span class="chip v">Cypress</span><span class="chip v">Manual</span></div>
+          </article>
+          <article class="card project">
+            <h3>TechMentor Plus</h3><p class="meta">Recruitment platform</p>
+            <p class="muted">Cypress automation and functional testing of hiring flows.</p>
+            <div class="chips"><span class="chip v">Cypress</span><span class="chip v">Manual</span></div>
+          </article>
+          <article class="card project">
+            <h3>Amber</h3><p class="meta">Smart AC mobile app</p>
+            <p class="muted">Functional and regression testing of a connected-device app on Android and iOS.</p>
+            <div class="chips"><span class="chip v">Android</span><span class="chip v">iOS</span></div>
+          </article>
+          <article class="card project">
+            <h3>Janajal</h3><p class="meta">Water ATM solution</p>
+            <p class="muted">Functional and regression testing for a public water ATM product.</p>
+            <div class="chips"><span class="chip v">Functional</span><span class="chip v">Regression</span></div>
+          </article>
+          <article class="card project cta-card">
+            <h3>Your product next?</h3>
+            <p class="muted">I'm looking for an SDET role where automation and fast, reliable CI are core engineering practices.</p>
+            <a href="#contact">Let's talk →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" style="padding-top:0">
+      <div class="wrap">
+        <p class="eyebrow">// SKILLS</p>
+        <h2>Tools I work with every day</h2>
+        <div class="grid-3">
+          <div class="card skill"><div class="bar" style="background:var(--green)"></div><h3>Automation</h3>
+            <div class="chips"><span class="chip g">Playwright</span><span class="chip g">Cypress</span><span class="chip g">Selenium WebDriver</span></div></div>
+          <div class="card skill"><div class="bar" style="background:var(--cyan)"></div><h3>API testing</h3>
+            <div class="chips"><span class="chip c">Postman</span><span class="chip c">Karate</span><span class="chip c">REST Assured</span><span class="chip c">cy.request</span></div></div>
+          <div class="card skill"><div class="bar" style="background:var(--violet)"></div><h3>CI/CD &amp; DevOps</h3>
+            <div class="chips"><span class="chip v">GitHub Actions</span><span class="chip v">Docker</span><span class="chip v">Parallel runs</span><span class="chip v">Slack reports</span></div></div>
+          <div class="card skill"><div class="bar" style="background:var(--amber)"></div><h3>Languages</h3>
+            <div class="chips"><span class="chip a">JavaScript</span><span class="chip a">Java</span></div></div>
+          <div class="card skill"><div class="bar" style="background:var(--green)"></div><h3>Testing types</h3>
+            <div class="chips"><span class="chip g">E2E</span><span class="chip g">Regression</span><span class="chip g">Functional</span><span class="chip g">Non-functional</span><span class="chip g">Mobile</span></div></div>
+          <div class="card skill"><div class="bar" style="background:var(--cyan)"></div><h3>Ways of working</h3>
+            <div class="chips"><span class="chip c">Agile / Scrum</span><span class="chip c">POM</span><span class="chip c">Jira</span><span class="chip c">Git</span><span class="chip c">AI-assisted</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" style="padding-top:0">
+      <div class="wrap">
+        <p class="eyebrow">// EXPERIENCE</p>
+        <h2>10+ years, from mobile QA to SDET</h2>
+        <ol class="timeline">
+          <li class="job current"><time>Aug 2024 – Present</time><div class="body"><h3>Sr. Quality Engineer<span>· LogicLink Labs</span></h3><p>Own QA for Citadel 365; built Cypress and Playwright frameworks, CI/CD and Docker runs.</p></div></li>
+          <li class="job"><time>Feb 2023 – Jul 2024</time><div class="body"><h3>Sr. Test Engineer<span>· Experis, Noida</span></h3><p>Cypress and Selenium testing, API testing with Cypress, CI integration.</p></div></li>
+          <li class="job"><time>Dec 2021 – Feb 2023</time><div class="body"><h3>Sr. Quality Analyst<span>· Insphere Solutions, New Delhi</span></h3><p>Cypress with POM across product lines; Karate API testing.</p></div></li>
+          <li class="job"><time>Apr 2019 – Dec 2021</time><div class="body"><h3>Software Engineer – QA<span>· IOanyT Innovations, Noida</span></h3><p>Built Cypress POM frameworks; validated microservice APIs with Karate.</p></div></li>
+          <li class="job"><time>Feb 2016 – Feb 2019</time><div class="body"><h3>Sr. Testing Engineer<span>· INTEX Technologies, New Delhi</span></h3><p>Mobile app testing; Selenium automation; API testing with Postman.</p></div></li>
+          <li class="job"><time>Apr 2015 – Feb 2016</time><div class="body"><h3>Testing Engineer<span>· Kiran Enterprises, New Delhi</span></h3><p>Manual testing for client software projects.</p></div></li>
+          <li class="job"><time>Jun 2013 – Apr 2015</time><div class="body"><h3>QA Engineer – Mobile<span>· Lava International, Noida</span></h3><p>Android handset and app testing for consumer devices.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- How I work -->
+    <section id="approach" style="padding-top:0">
+      <div class="wrap">
+        <p class="eyebrow">// HOW I WORK</p>
+        <h2>Quality is a team habit, not a phase</h2>
+        <div class="grid-4">
+          <div class="card principle"><b>01</b><h3>Shift left</h3><p>Define coverage with developers and the PM from requirements, before code is written.</p></div>
+          <div class="card principle"><b>02</b><h3>Right layer</h3><p>Business rules at the API level, key journeys in the UI, no duplicate coverage.</p></div>
+          <div class="card principle"><b>03</b><h3>Fast and stable</h3><p>No fixed waits, isolated test data, flaky tests quarantined, not ignored.</p></div>
+          <div class="card principle"><b>04</b><h3>Share it</h3><p>Clear reports, documented patterns, and mentoring so anyone can contribute.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" style="padding-top:0">
+      <div class="wrap">
+        <div class="card contact">
+          <div>
+            <h2>Let's build something reliable together.</h2>
+            <p class="muted">Based in Meerut, Uttar Pradesh, India</p>
+            <div class="contact-links">
+              <a class="g" href="mailto:anujchauhan411@gmail.com">anujchauhan411@gmail.com</a>
+              <a class="c" href="https://www.linkedin.com/in/anuj-chauhan-b99564132" target="_blank" rel="noopener">LinkedIn</a>
+              <a class="v" href="https://github.com/Anuj14111992" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+          <a class="btn btn-primary" href="mailto:anujchauhan411@gmail.com">Email me</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© <span id="year">2026</span> Anuj Chauhan · Senior SDET</footer>
+
+  <script>
+    // Mobile menu toggle; closes after a link is chosen.
+    const btn = document.querySelector('.menu-btn');
+    const links = document.getElementById('nav-links');
+    btn.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+    });
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      links.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
